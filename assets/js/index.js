@@ -16,16 +16,14 @@ function getUserInfo() {
     $.ajax({
         method: "GET",
         url: "/my/userinfo",
-        // headers: {
-        //     Authorization: localStorage.getItem('token') || ''
-        // },
         success: function(res) {
             console.log(res);
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败1')
             }
             renderAvatar(res.data);
-        },
+        }
+
         // complete: function(res) {
         //     // console.log('complate');
         //     // console.log(res);
@@ -39,13 +37,13 @@ function getUserInfo() {
 
 function renderAvatar(user) {
     // 获取用户名 
-    var name = user.niickname || user.username;
+    var name = user.nickname || user.username;
     // 将用户名设置到页面中
     $("#welcome").html("欢迎&nbsp;&nbsp;" + name);
     // 判断用户头象
     if (user.user_pic !== null) {
-        $(".layui-nav-img").attr("src", user.user_pic);
-        $("text-avatar").hide();
+        $(".layui-nav-img").attr("src", user.user_pic).show();
+        $(".text-avatar").hide();
     } else {
         $(".layui-nav-img").hide();
         var first = name[0].toUpperCase();
