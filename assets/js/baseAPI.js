@@ -1,9 +1,9 @@
 $.ajaxPrefilter(function(options) {
     // console.log(options.url)
-    if (options.url.indexOf('/my/') != -1 || options.url.indexOf('/my/') >= 1) {
+    options.url = "http://ajax.frontend.itheima.net" + options.url;
+    if (options.url.indexOf('/my/') != -1) {
         options.headers = { Authorization: localStorage.getItem('token') || '' };
     }
-    options.url = "http://ajax.frontend.itheima.net" + options.url;
     options.complete = function(res) {
         // console.log('complate');
         // console.log(res);
